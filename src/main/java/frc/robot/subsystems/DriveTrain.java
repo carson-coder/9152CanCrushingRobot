@@ -6,8 +6,6 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -23,11 +21,6 @@ public class DriveTrain extends SubsystemBase {
   public DriveTrain() {
     motorLeft1.setInverted(true);
     motorLeft2.setInverted(true);
-
-    SmartDashboard.putNumber("Left 1", motorLeft1.get());
-    SmartDashboard.putNumber("Left 2", motorLeft2.get());
-    SmartDashboard.putNumber("Right 1", motorRight1.get());
-    SmartDashboard.putNumber("Right 2", motorRight2.get());
   }
 
   public Command createTankDrive() {
