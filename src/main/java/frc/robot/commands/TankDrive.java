@@ -23,8 +23,12 @@ public class TankDrive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double leftStickY = RobotContainer.GetDriverRawAxis(Constants.LEFT_STICK_Y);
-    double rightStickY = RobotContainer.GetDriverRawAxis(Constants.RIGHT_STICK_Y);
+    //Controller Input
+    // double leftStickY = RobotContainer.GetDriverRawAxis(Constants.LEFT_STICK_Y);
+    // double rightStickY = RobotContainer.GetDriverRawAxis(Constants.RIGHT_STICK_Y);
+    //Keyboard Input
+    double leftStickY = -RobotContainer.GetDriverRawAxis(Constants.KEYBOARD_Y);
+    double rightStickY = -RobotContainer.GetDriverRawAxis(Constants.OperatorConstants.SECOND_PORT, Constants.RIGHT_STICK_Y);
 
     Robot.driveTrain.setLeftMotors(leftStickY*0.1);
     Robot.driveTrain.setLeftMotors(rightStickY*0.1);
