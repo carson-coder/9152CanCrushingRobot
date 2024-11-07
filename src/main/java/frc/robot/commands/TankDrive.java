@@ -4,21 +4,17 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class TankDrive extends Command {
-  private DifferentialDrive drive = new DifferentialDrive(Robot.driveTrain::setLeftMotors, Robot.driveTrain::setRightMotors);
 
   /** Creates a new TankDrive. */
   public TankDrive() {
     addRequirements(Robot.driveTrain);
 
-    SmartDashboard.putData("Robot", drive);
   }
 
   // Called when the command is initially scheduled.
@@ -29,16 +25,17 @@ public class TankDrive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double leftStickY = RobotContainer.GetDriverRawAxis(Constants.LEFT_STICK_Y);
-    double rightStickX = RobotContainer.GetDriverRawAxis(Constants.RIGHT_STICK_X);
+    // Invert cause my controller is weird
+    double leftStickY =  -RobotContainer.GetDriverRawAxis(Constants.LEFT_STICK_Y);
+    double rightStickX = -RobotContainer.GetDriverRawAxis(Constants.RIGHT_STICK_X);
 
-    drive.arcadeDrive(leftStickY, rightStickX);
+    Robot.driveTrain.arcadeDrive(leftStickY, rightStickX);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drive.stopMotor();
+    Robot.driveTrain.stop();
   }
 
   // Returns true when the command should end.

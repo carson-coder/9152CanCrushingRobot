@@ -5,16 +5,21 @@
         "header": {
           "open": true
         }
-      },
-      "window": {
-        "visible": false
       }
     }
   },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
-      "/SmartDashboard/DifferentialDrive[1]": "DifferentialDrive"
+      "/SmartDashboard/DifferentialDrive[1]": "DifferentialDrive",
+      "/SmartDashboard/Robot": "DifferentialDrive"
+    },
+    "windows": {
+      "/SmartDashboard/Robot": {
+        "window": {
+          "visible": true
+        }
+      }
     }
   },
   "NetworkTables": {
@@ -24,6 +29,9 @@
       },
       "SmartDashboard": {
         "DifferentialDrive[1]": {
+          "open": true
+        },
+        "Robot": {
           "open": true
         },
         "open": true

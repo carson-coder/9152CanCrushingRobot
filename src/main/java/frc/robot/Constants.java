@@ -27,5 +27,7 @@ public final class Constants {
   }
 
   public static int LEFT_STICK_Y = 1;
-  public static int RIGHT_STICK_X = 0;
+  public static int RIGHT_STICK_X = 4;
+  public static int KEYBOARD_X = 0;
+  public static int KEYBOARD_Y = 1;
 }
