@@ -16,16 +16,20 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
  */
 public class RobotContainer {
 
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  private static final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.JOYSTICK_PORT);
+    // Replace with CommandPS4Controller or CommandJoystick if needed
+    private static final CommandXboxController m_driverController =
+            new CommandXboxController(OperatorConstants.JOYSTICK_PORT);
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public static double GetDriverRawAxis(int axis) {
-    return m_driverController.getRawAxis(axis);
-  }
+    /** The container for the robot. Contains subsystems, OI devices, and commands. */
+    public static double GetDriverRawAxis(int axis) {
+        return m_driverController.getRawAxis(axis);
+    }
 
-  public static double GetDriverRawAxis(int port, int axis) {
-    return new Joystick(port).getRawAxis(axis);
-  }
+    public static double GetDriverRawAxis(int port, int axis) {
+        return new Joystick(port).getRawAxis(axis);
+    }
+
+    public static boolean is_keyboard() {
+        return m_driverController.getHID().getAxisCount() < 4;
+    }
 }

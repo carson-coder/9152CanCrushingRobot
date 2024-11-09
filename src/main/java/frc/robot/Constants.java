@@ -13,21 +13,27 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  public static class OperatorConstants {
-    public static final int JOYSTICK_PORT = 0;
-    public static final int SECOND_PORT = 1;
-  }
+    public static class OperatorConstants {
+        public static final int JOYSTICK_PORT = 0;
+    }
 
-  public static class Robot {
+    public static class Robot {
+        
+        // L1--|--R1
+        //     |
+        //     |
+        //     |
+        //     |
+        // L2--|--R2
 
-    public static final int MOTOR_LEFT_1_ID = 0;
-    public static final int MOTOR_LEFT_2_ID = 1;
-    public static final int MOTOR_RIGHT_1_ID = 2;
-    public static final int MOTOR_RIGHT_2_ID = 3;
-  }
+        public static final int MOTOR_LEFT_1_ID = 0;
+        public static final int MOTOR_LEFT_2_ID = 1;
+        public static final int MOTOR_RIGHT_1_ID = 2;
+        public static final int MOTOR_RIGHT_2_ID = 3;
+    }
 
-  public static int LEFT_STICK_Y = 1;
-  public static int RIGHT_STICK_X = 4;
-  public static int KEYBOARD_X = 0;
-  public static int KEYBOARD_Y = 1;
+    public static int LEFT_STICK_Y = 1;
+    public static int RIGHT_STICK_X = 4;
+    public static int KEYBOARD_X = 0;
+    public static int KEYBOARD_Y = 1;
 }

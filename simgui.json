@@ -12,9 +12,15 @@
     "types": {
       "/FMSInfo": "FMSInfo",
       "/SmartDashboard/DifferentialDrive[1]": "DifferentialDrive",
+      "/SmartDashboard/DriveTrain": "Subsystem",
       "/SmartDashboard/Robot": "DifferentialDrive"
     },
     "windows": {
+      "/SmartDashboard/DriveTrain": {
+        "window": {
+          "visible": true
+        }
+      },
       "/SmartDashboard/Robot": {
         "window": {
           "visible": true
@@ -31,7 +37,7 @@
         "DifferentialDrive[1]": {
           "open": true
         },
-        "Robot": {
+        "DriveTrain": {
           "open": true
         },
         "open": true
