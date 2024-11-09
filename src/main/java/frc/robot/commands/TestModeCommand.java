@@ -42,22 +42,22 @@ public class TestModeCommand extends Command {
         switch (time) {
             case 0:
                 motorRight2.set(0);
-                motorLeft1.set(0.1);
+                motorLeft1.set(1);
                 break;
 
             case 1:
                 motorLeft1.set(0);
-                motorLeft2.set(0.1);
+                motorLeft2.set(1);
                 break;
 
             case 2:
                 motorLeft2.set(0);
-                motorRight1.set(0.1);
+                motorRight1.set(1);
                 break;
             
             case 3:
                 motorRight1.set(0);
-                motorRight2.set(0.1);
+                motorRight2.set(1);
                 break;
             
             default:

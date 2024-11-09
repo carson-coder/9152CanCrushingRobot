@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -26,7 +27,7 @@ public class DriveTrain extends SubsystemBase {
     private CANSparkMax motorRight2 = new CANSparkMax(Constants.Robot.MOTOR_RIGHT_2_ID, MotorType.kBrushless);
 
     private DifferentialDrive driveTrain = new DifferentialDrive(this::setLeftMotors, this::setRightMotors);
-    
+
     private Drive drive;
 
     /** Creates a new DriveTrain. */
@@ -48,14 +49,14 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void setLeftMotors(double speed) {
-        motorLeft1.set(speed);
-        motorLeft2.set(speed);
+        motorLeft1.set(speed/Constants.Robot.SpeedDivider);
+        motorLeft2.set(speed/Constants.Robot.SpeedDivider);
         SmartDashboard.putNumber("Left Motor Speed", speed);
     }
 
     public void setRightMotors(double speed) {
-        motorRight1.set(speed);
-        motorRight2.set(speed);
+        motorRight1.set(speed/Constants.Robot.SpeedDivider);
+        motorRight2.set(speed/Constants.Robot.SpeedDivider);
         SmartDashboard.putNumber("Right Motor Speed", speed);
     }
 
@@ -74,9 +75,18 @@ public class DriveTrain extends SubsystemBase {
     @Override
     public void initSendable(SendableBuilder builder) {
         super.initSendable(builder);
-        builder.addDoubleProperty("Left 1", motorLeft1::get, null);
-        builder.addDoubleProperty("Left 2", motorLeft2::get, null);
-        builder.addDoubleProperty("Right 1", motorRight1::get, null);
-        builder.addDoubleProperty("Right 2", motorRight2::get, null);
+        builder.setSmartDashboardType("SwerveDrive");
+        builder.setActuator(true);
+        builder.addDoubleProperty("Front Left Velocity", () -> {return motorLeft1.get() * Constants.Robot.SpeedDivider   * 2;}, null);
+        builder.addDoubleProperty("Back Left Velocity", () -> {return motorLeft2.get() * Constants.Robot.SpeedDivider    * 2;}, null);
+        builder.addDoubleProperty("Front Right Velocity", () -> {return motorRight1.get() * Constants.Robot.SpeedDivider * 2;}, null);
+        builder.addDoubleProperty("Back Right Velocity", () -> {return motorRight2.get() * Constants.Robot.SpeedDivider  * 2;}, null);
+
+        builder.addDoubleProperty("Front Left Angle", () -> {return 0;}, null);
+        builder.addDoubleProperty("Back Left Angle", () -> {return 0;}, null);
+        builder.addDoubleProperty("Front Right Angle", () -> {return 0;}, null);
+        builder.addDoubleProperty("Back Right Angle", () -> {return 0;}, null);
+
+        builder.addDoubleProperty("Robot Angle", () -> {return 0;}, null);
     }
 }
