@@ -7,6 +7,7 @@ package frc.robot.commands;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -26,6 +27,7 @@ public class TestModeCommand extends Command {
         this.motorLeft2 = motorLeft2;
         this.motorRight1 = motorRight1;
         this.motorRight2 = motorRight2;
+        SmartDashboard.putData(this);
     }
 
     // Called when the command is initially scheduled.

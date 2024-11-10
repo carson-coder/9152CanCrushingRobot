@@ -18,6 +18,7 @@ public class TankDrive extends Command {
     /** Creates a new TankDrive. */
     public TankDrive() {
         addRequirements(Robot.motorControl);
+        SmartDashboard.putData(this);
     }
 
     // Called when the command is initially scheduled.
@@ -28,9 +29,8 @@ public class TankDrive extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        
-        SmartDashboard.putData("Robot", driveTrain);
-        
+        SmartDashboard.putData(driveTrain);
+
         double rotation;
         double speed;
         if (RobotContainer.is_keyboard()) {

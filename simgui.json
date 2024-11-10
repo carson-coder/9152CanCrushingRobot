@@ -2,13 +2,27 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
-      "/SmartDashboard/Robot": "DifferentialDrive"
+      "/SmartDashboard/DifferentialDrive[1]": "DifferentialDrive",
+      "/SmartDashboard/MotorControl": "Subsystem",
+      "/SmartDashboard/Robot": "DifferentialDrive",
+      "/SmartDashboard/TankDrive": "Command",
+      "/SmartDashboard/TestModeCommand": "Command"
     },
     "windows": {
       "/SmartDashboard/Robot": {
         "window": {
           "visible": true
         }
+      }
+    }
+  },
+  "NetworkTables": {
+    "transitory": {
+      "SmartDashboard": {
+        "MotorControl": {
+          "open": true
+        },
+        "open": true
       }
     }
   },
