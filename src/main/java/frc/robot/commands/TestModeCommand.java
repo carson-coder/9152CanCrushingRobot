@@ -6,9 +6,9 @@ package frc.robot.commands;
 
 import com.revrobotics.CANSparkMax;
 
-import edu.wpi.first.wpilibj.RuntimeType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class TestModeCommand extends Command {
@@ -21,7 +21,7 @@ public class TestModeCommand extends Command {
     
     /** Creates a new TestModeCommand. */
     public TestModeCommand(CANSparkMax motorLeft1, CANSparkMax motorLeft2, CANSparkMax motorRight1, CANSparkMax motorRight2) {
-        addRequirements(Robot.driveTrain);
+        addRequirements(Robot.motorControl);
         this.motorLeft1 = motorLeft1;
         this.motorLeft2 = motorLeft2;
         this.motorRight1 = motorRight1;
@@ -42,22 +42,22 @@ public class TestModeCommand extends Command {
         switch (time) {
             case 0:
                 motorRight2.set(0);
-                motorLeft1.set(1);
+                motorLeft1.set(1/Constants.Robot.SPEED_DIVIDER);
                 break;
 
             case 1:
                 motorLeft1.set(0);
-                motorLeft2.set(1);
+                motorLeft2.set(1/Constants.Robot.SPEED_DIVIDER);
                 break;
 
             case 2:
                 motorLeft2.set(0);
-                motorRight1.set(1);
+                motorRight1.set(1/Constants.Robot.SPEED_DIVIDER);
                 break;
             
             case 3:
                 motorRight1.set(0);
-                motorRight2.set(1);
+                motorRight2.set(1/Constants.Robot.SPEED_DIVIDER);
                 break;
             
             default:
@@ -77,6 +77,6 @@ public class TestModeCommand extends Command {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return Robot.status != 4;
+        return false;
     }
 }

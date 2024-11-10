@@ -6,7 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.MotorControl;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -17,14 +17,12 @@ import frc.robot.subsystems.DriveTrain;
 public class Robot extends TimedRobot {
     private RobotContainer m_robotContainer;
 
-    public static int status = 0;
-
-    public static DriveTrain driveTrain = new DriveTrain();
+    public static MotorControl motorControl = new MotorControl();
 
     @Override
     public void robotInit() {
         m_robotContainer = new RobotContainer();
-        driveTrain.init();
+        motorControl.init();
     }
 
     @Override
@@ -33,25 +31,19 @@ public class Robot extends TimedRobot {
     }
 
     @Override
-    public void disabledInit() {
-        status = 1;
-    }
+    public void disabledInit() {}
 
     @Override
     public void disabledPeriodic() {}
 
     @Override
-    public void autonomousInit() {
-        status = 2;
-    }
+    public void autonomousInit() {}
 
     @Override
     public void autonomousPeriodic() {}
 
     @Override
-    public void teleopInit() {
-        status = 3;
-    }
+    public void teleopInit() {}
 
     @Override
     public void teleopPeriodic() {}
@@ -60,12 +52,16 @@ public class Robot extends TimedRobot {
     public void testInit() {
         // Cancels all running commands at the start of test mode.
         CommandScheduler.getInstance().cancelAll();
-        status = 4;
-        CommandScheduler.getInstance().schedule(driveTrain.testModeCommand());
+        CommandScheduler.getInstance().schedule(motorControl.testModeCommand());
     }
 
     @Override
     public void testPeriodic() {}
+
+    @Override
+    public void testExit() {
+        CommandScheduler.getInstance().cancelAll();
+    }
     
     @Override
     public void simulationInit() {}

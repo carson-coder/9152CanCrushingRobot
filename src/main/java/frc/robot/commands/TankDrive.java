@@ -4,16 +4,20 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-public class Drive extends Command {
+public class TankDrive extends Command {
 
+    private DifferentialDrive driveTrain = new DifferentialDrive(Robot.motorControl::setLeftMotors, Robot.motorControl::setRightMotors);
+    
     /** Creates a new TankDrive. */
-    public Drive() {
-        addRequirements(Robot.driveTrain);
+    public TankDrive() {
+        addRequirements(Robot.motorControl);
     }
 
     // Called when the command is initially scheduled.
@@ -24,6 +28,9 @@ public class Drive extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        
+        SmartDashboard.putData("Robot", driveTrain);
+        
         double rotation;
         double speed;
         if (RobotContainer.is_keyboard()) {
@@ -35,13 +42,13 @@ public class Drive extends Command {
         }
         
         // Inverted cause
-        Robot.driveTrain.arcadeDrive(-speed, -rotation);
+        driveTrain.arcadeDrive(-speed, -rotation);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        Robot.driveTrain.stop();
+        driveTrain.stopMotor();
     }
 
     // Returns true when the command should end.

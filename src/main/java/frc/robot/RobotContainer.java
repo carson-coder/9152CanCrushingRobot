@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
  */
 public class RobotContainer {
 
+    
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private static final CommandXboxController m_driverController =
             new CommandXboxController(OperatorConstants.JOYSTICK_PORT);
@@ -32,4 +33,6 @@ public class RobotContainer {
     public static boolean is_keyboard() {
         return m_driverController.getHID().getAxisCount() < 4;
     }
+
+    public RobotContainer() {}
 }

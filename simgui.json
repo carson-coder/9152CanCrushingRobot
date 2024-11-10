@@ -1,26 +1,10 @@
 {
-  "HALProvider": {
-    "Other Devices": {
-      "SPARK MAX [0]": {
-        "header": {
-          "open": true
-        }
-      }
-    }
-  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
-      "/SmartDashboard/DifferentialDrive[1]": "DifferentialDrive",
-      "/SmartDashboard/DriveTrain": "Subsystem",
       "/SmartDashboard/Robot": "DifferentialDrive"
     },
     "windows": {
-      "/SmartDashboard/DriveTrain": {
-        "window": {
-          "visible": true
-        }
-      },
       "/SmartDashboard/Robot": {
         "window": {
           "visible": true
@@ -28,41 +12,7 @@
       }
     }
   },
-  "NetworkTables": {
-    "transitory": {
-      "LiveWindow": {
-        "open": true
-      },
-      "SmartDashboard": {
-        "DifferentialDrive[1]": {
-          "open": true
-        },
-        "DriveTrain": {
-          "open": true
-        },
-        "open": true
-      }
-    }
-  },
   "NetworkTables Info": {
     "visible": true
-  },
-  "Plot": {
-    "Plot <0>": {
-      "plots": [
-        {
-          "backgroundColor": [
-            0.0,
-            0.0,
-            0.0,
-            0.8500000238418579
-          ],
-          "height": 338
-        }
-      ],
-      "window": {
-        "visible": false
-      }
-    }
   }
 }
