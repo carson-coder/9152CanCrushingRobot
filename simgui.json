@@ -9,7 +9,7 @@
       "/SmartDashboard/TestModeCommand": "Command"
     },
     "windows": {
-      "/SmartDashboard/Robot": {
+      "/SmartDashboard/DifferentialDrive[1]": {
         "window": {
           "visible": true
         }
