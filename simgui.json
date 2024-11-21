@@ -1,14 +1,41 @@
 {
+  "HALProvider": {
+    "Other Devices": {
+      "SPARK MAX [4]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [99999]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [99]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/Crushing Subsystem": "Subsystem",
       "/SmartDashboard/DifferentialDrive[1]": "DifferentialDrive",
+      "/SmartDashboard/Motor Control": "Subsystem",
       "/SmartDashboard/MotorControl": "Subsystem",
       "/SmartDashboard/Robot": "DifferentialDrive",
       "/SmartDashboard/TankDrive": "Command",
+      "/SmartDashboard/TestMode": "Command",
       "/SmartDashboard/TestModeCommand": "Command"
     },
     "windows": {
+      "/SmartDashboard/Crushing Subsystem": {
+        "window": {
+          "visible": true
+        }
+      },
       "/SmartDashboard/DifferentialDrive[1]": {
         "window": {
           "visible": true

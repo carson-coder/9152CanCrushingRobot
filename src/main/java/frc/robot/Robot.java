@@ -4,8 +4,14 @@
 
 package frc.robot;
 
+import java.util.Currency;
+
+import com.fasterxml.jackson.databind.deser.impl.CreatorCollector;
+
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.CanCrushing;
 import frc.robot.subsystems.MotorControl;
 
 /**
@@ -42,11 +48,22 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousPeriodic() {}
 
+    public static CanCrushing crushingSubsystem;
+
     @Override
-    public void teleopInit() {}
+    public void teleopInit() {
+        crushingSubsystem = new CanCrushing();
+        crushingSubsystem.init();
+    }
 
     @Override
     public void teleopPeriodic() {}
+
+    @Override
+    public void teleopExit() {
+        CommandScheduler.getInstance().cancel(CommandScheduler.getInstance().requiring(crushingSubsystem));
+        crushingSubsystem = null;
+    }
 
     @Override
     public void testInit() {

@@ -13,21 +13,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.TankDrive;
-import frc.robot.commands.TestModeCommand;
+import frc.robot.RobotContainer;
+import frc.robot.commands.driving.TankDrive;
+import frc.robot.commands.driving.TestMode;
 
 public class MotorControl extends SubsystemBase {
-    private CANSparkMax motorLeft1 = new CANSparkMax(Constants.Robot.MOTOR_LEFT_1_ID, MotorType.kBrushed);
-    private CANSparkMax motorLeft2 = new CANSparkMax(Constants.Robot.MOTOR_LEFT_2_ID, MotorType.kBrushed);
-    private CANSparkMax motorRight1 = new CANSparkMax(Constants.Robot.MOTOR_RIGHT_1_ID, MotorType.kBrushed);
-    private CANSparkMax motorRight2 = new CANSparkMax(Constants.Robot.MOTOR_RIGHT_2_ID, MotorType.kBrushed);
-
 
     private TankDrive tankDrive;
 
     /** Creates a new DriveTrain. */
     public MotorControl() {
-        SmartDashboard.putData(this);
+        SmartDashboard.putData("Motor Control", this);
     }
 
     // Init function to make command that require this subsystem
@@ -42,17 +38,17 @@ public class MotorControl extends SubsystemBase {
     }
 
     public void setLeftMotors(double speed) {
-        motorLeft1.set(speed/Constants.Robot.SPEED_DIVIDER);
-        motorLeft2.set(speed/Constants.Robot.SPEED_DIVIDER);
+        RobotContainer.motorLeft1.set(speed/Constants.Robot.SPEED_DIVIDER);
+        RobotContainer.motorLeft2.set(speed/Constants.Robot.SPEED_DIVIDER);
     }
 
     public void setRightMotors(double speed) {
-        motorRight1.set(speed/Constants.Robot.SPEED_DIVIDER);
-        motorRight2.set(speed/Constants.Robot.SPEED_DIVIDER);
+        RobotContainer.motorRight1.set(speed/Constants.Robot.SPEED_DIVIDER);
+        RobotContainer.motorRight2.set(speed/Constants.Robot.SPEED_DIVIDER);
     }
 
     public Command testModeCommand() {
-        TestModeCommand cmd = new TestModeCommand(motorLeft1, motorLeft2, motorRight1, motorRight2);
+        TestMode cmd = new TestMode();
         return cmd;
     }
 
@@ -62,10 +58,10 @@ public class MotorControl extends SubsystemBase {
         builder.setActuator(true);
         
         builder.addStringProperty("SwerveDrive/.type", () -> {return "SwerveDrive";}, null);
-        builder.addDoubleProperty("SwerveDrive/Front Left Velocity", () -> {return motorLeft1.get() * Constants.Robot.SPEED_DIVIDER   * 2;}, null);
-        builder.addDoubleProperty("SwerveDrive/Back Left Velocity", () -> {return motorLeft2.get() * Constants.Robot.SPEED_DIVIDER    * 2;}, null);
-        builder.addDoubleProperty("SwerveDrive/Front Right Velocity", () -> {return motorRight1.get() * Constants.Robot.SPEED_DIVIDER * 2;}, null);
-        builder.addDoubleProperty("SwerveDrive/Back Right Velocity", () -> {return motorRight2.get() * Constants.Robot.SPEED_DIVIDER  * 2;}, null);
+        builder.addDoubleProperty("SwerveDrive/Front Left Velocity", () -> {return RobotContainer.motorLeft1.get() * Constants.Robot.SPEED_DIVIDER   * 2;}, null);
+        builder.addDoubleProperty("SwerveDrive/Back Left Velocity", () -> {return RobotContainer.motorLeft2.get() * Constants.Robot.SPEED_DIVIDER    * 2;}, null);
+        builder.addDoubleProperty("SwerveDrive/Front Right Velocity", () -> {return RobotContainer.motorRight1.get() * Constants.Robot.SPEED_DIVIDER * 2;}, null);
+        builder.addDoubleProperty("SwerveDrive/Back Right Velocity", () -> {return RobotContainer.motorRight2.get() * Constants.Robot.SPEED_DIVIDER  * 2;}, null);
 
         builder.addDoubleProperty("SwerveDrive/Front Left Angle", () -> {return 0;}, null);
         builder.addDoubleProperty("SwerveDrive/Back Left Angle", () -> {return 0;}, null);
@@ -74,7 +70,7 @@ public class MotorControl extends SubsystemBase {
 
         builder.addDoubleProperty("SwerveDrive/Robot Angle", () -> {return 0;}, null);
         
-        builder.addDoubleProperty("Left Speed", motorLeft1::get, this::setLeftMotors);
-        builder.addDoubleProperty("Right Speed", motorRight1::get, this::setRightMotors);
+        builder.addDoubleProperty("Left Speed", RobotContainer.motorLeft1::get, this::setLeftMotors);
+        builder.addDoubleProperty("Right Speed", RobotContainer.motorRight1::get, this::setRightMotors);
     }
 }

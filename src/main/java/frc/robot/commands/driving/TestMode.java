@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.driving;
 
 import com.revrobotics.CANSparkMax;
 
@@ -11,22 +11,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
-public class TestModeCommand extends Command {
-    private CANSparkMax motorLeft1;
-    private CANSparkMax motorLeft2;
-    private CANSparkMax motorRight1;
-    private CANSparkMax motorRight2;
+public class TestMode extends Command {
 
     private final Timer timer = new Timer();
     
     /** Creates a new TestModeCommand. */
-    public TestModeCommand(CANSparkMax motorLeft1, CANSparkMax motorLeft2, CANSparkMax motorRight1, CANSparkMax motorRight2) {
+    public TestMode() {
         addRequirements(Robot.motorControl);
-        this.motorLeft1 = motorLeft1;
-        this.motorLeft2 = motorLeft2;
-        this.motorRight1 = motorRight1;
-        this.motorRight2 = motorRight2;
         SmartDashboard.putData(this);
     }
 
@@ -43,23 +36,23 @@ public class TestModeCommand extends Command {
         int time = (int)Math.round(timer.get()) % 4;
         switch (time) {
             case 0:
-                motorRight2.set(0);
-                motorLeft1.set(1/Constants.Robot.SPEED_DIVIDER);
+                RobotContainer.motorRight2.set(0);
+                RobotContainer.motorLeft1.set(1/Constants.Robot.SPEED_DIVIDER);
                 break;
 
             case 1:
-                motorLeft1.set(0);
-                motorLeft2.set(1/Constants.Robot.SPEED_DIVIDER);
+                RobotContainer.motorLeft1.set(0);
+                RobotContainer.motorLeft2.set(1/Constants.Robot.SPEED_DIVIDER);
                 break;
 
             case 2:
-                motorLeft2.set(0);
-                motorRight1.set(1/Constants.Robot.SPEED_DIVIDER);
+                RobotContainer.motorLeft2.set(0);
+                RobotContainer.motorRight1.set(1/Constants.Robot.SPEED_DIVIDER);
                 break;
             
             case 3:
-                motorRight1.set(0);
-                motorRight2.set(1/Constants.Robot.SPEED_DIVIDER);
+                RobotContainer.motorRight1.set(0);
+                RobotContainer.motorRight2.set(1/Constants.Robot.SPEED_DIVIDER);
                 break;
             
             default:
@@ -70,10 +63,10 @@ public class TestModeCommand extends Command {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        motorLeft1.set(0);
-        motorLeft2.set(0);
-        motorRight1.set(0);
-        motorRight2.set(0);
+        RobotContainer.motorLeft1.set(0);
+        RobotContainer.motorLeft2.set(0);
+        RobotContainer.motorRight1.set(0);
+        RobotContainer.motorRight2.set(0);
     }
 
     // Returns true when the command should end.
