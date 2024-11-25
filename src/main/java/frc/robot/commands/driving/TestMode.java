@@ -72,6 +72,7 @@ public class TestMode extends Command {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        // Instantly Exit
+        return true;
     }
 }
