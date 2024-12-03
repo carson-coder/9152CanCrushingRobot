@@ -32,6 +32,7 @@ public class Crushing extends Command {
     @Override
     public void initialize() {
         System.out.println("Running Crushing Command");
+        RobotContainer.Crushing = true;
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -44,6 +45,7 @@ public class Crushing extends Command {
     @Override
     public void end(boolean interrupted) {
         motor.set(0);
+        RobotContainer.Crushing = false;
     }
 
     // Returns true when the command should end.

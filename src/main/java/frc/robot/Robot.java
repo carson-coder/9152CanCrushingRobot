@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.CanCrushing;
+import frc.robot.subsystems.LightsSubsystem;
 import frc.robot.subsystems.MotorControl;
 
 /**
@@ -24,16 +25,19 @@ public class Robot extends TimedRobot {
     private RobotContainer m_robotContainer;
 
     public static MotorControl motorControl = new MotorControl();
+    public static LightsSubsystem lightControl = new LightsSubsystem();
 
     @Override
     public void robotInit() {
         m_robotContainer = new RobotContainer();
         motorControl.init();
+        lightControl.init();
     }
 
     @Override
     public void robotPeriodic() {
         CommandScheduler.getInstance().run();
+        SmartDashboard.updateValues();
     }
 
     @Override

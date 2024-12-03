@@ -26,6 +26,8 @@ public class RobotContainer {
 
     public static CANSparkMax crushingMotor = new CANSparkMax(Constants.CRUSHING_MOTOR, MotorType.kBrushed);
     
+    public static boolean Crushing = false;
+
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private static final CommandXboxController m_driverController =
             new CommandXboxController(OperatorConstants.JOYSTICK_PORT);
