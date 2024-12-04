@@ -51,6 +51,6 @@ public class Crushing extends Command {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return timer.get() > Constants.CRUSHING_TIME;
+        return (timer.get() > Constants.CRUSHING_TIME) || !RobotContainer.led.get();
     }
 }

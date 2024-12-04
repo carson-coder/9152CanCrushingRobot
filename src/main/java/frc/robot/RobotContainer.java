@@ -9,6 +9,7 @@ import frc.robot.Constants.OperatorConstants;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
@@ -27,6 +28,8 @@ public class RobotContainer {
     public static CANSparkMax crushingMotor = new CANSparkMax(Constants.CRUSHING_MOTOR, MotorType.kBrushed);
     
     public static boolean Crushing = false;
+
+    public static final DigitalInput led = new DigitalInput(0);
 
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private static final CommandXboxController m_driverController =

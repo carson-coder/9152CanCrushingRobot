@@ -66,6 +66,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopExit() {
         CommandScheduler.getInstance().cancel(CommandScheduler.getInstance().requiring(crushingSubsystem));
+        crushingSubsystem.exit();
         crushingSubsystem = null;
     }
 

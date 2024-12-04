@@ -24,16 +24,18 @@ public class CanCrushing extends SubsystemBase {
     Trigger stop;
     
     Crushing cmd;
+    boolean stopped = false;
 
     /** Creates a new CanCrushing. */
     public CanCrushing() {}
 
     public void init() {
-        run = new CommandXboxController(Constants.OperatorConstants.JOYSTICK_PORT).a();
-        run.onTrue(this.runOnce(() -> {CommandScheduler.getInstance().schedule(crushing());}));
+        Trigger STOP = new Trigger(RobotContainer.led::get);
+        run = new CommandXboxController(Constants.OperatorConstants.JOYSTICK_PORT).a().and(STOP);
+        run.onTrue(this.runOnce(() -> {if (stopped) {return;} CommandScheduler.getInstance().schedule(crushing());}));
 
-        stop = new CommandXboxController(Constants.OperatorConstants.JOYSTICK_PORT).b();
-        stop.onTrue(this.runOnce(() -> {CommandScheduler.getInstance().cancel(cmd);}));
+        stop = new CommandXboxController(Constants.OperatorConstants.JOYSTICK_PORT).b().or(STOP.negate());
+        stop.onTrue(this.runOnce(() -> {if (stopped) {return;} CommandScheduler.getInstance().cancel(cmd);}));
         SmartDashboard.putData("Crushing Subsystem", this);
     }
 
@@ -47,6 +49,12 @@ public class CanCrushing extends SubsystemBase {
     @Override
     public void periodic() {
         //SmartDashboard.putData("Crushing Subsystem", this);
+    }
+
+    public void exit() {
+        run = null;
+        stop = null;
+        stopped = true;
     }
 
     @Override

@@ -18,8 +18,6 @@ public class Lights extends Command {
   AddressableLED m_led = new AddressableLED(9);
   AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(60);
 
-  DigitalInput led = new DigitalInput(0);
-
   public Lights() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.lightControl);
@@ -38,12 +36,23 @@ public class Lights extends Command {
   }
 
   // Called every time the scheduler runs while the command is scheduled.
+  int n = 0;
   @Override
   public void execute() {
     // for (int i = 0; i < m_ledBuffer.getLength(); i++) {
     //   m_ledBuffer.setHSV(i, Math.round(((float)i/m_ledBuffer.getLength())*180), 255, 255);
     // }
-    boolean obstructed = !led.get();
+    boolean obstructed = !RobotContainer.led.get();
+    
+    if (Robot.crushingSubsystem == null) {
+      for (int i = 0; i < m_ledBuffer.getLength(); i++) {
+        m_ledBuffer.setHSV(i, Math.round(((float)i/m_ledBuffer.getLength())*180)+n, 255, 255);
+        colors[i] = m_ledBuffer.getLED(i).toHexString();
+      }
+      n = (n + 1) % 180;
+      return;
+    }
+
     if (RobotContainer.Crushing) {
       for (int i = 0; i < m_ledBuffer.getLength(); i++) {
         m_ledBuffer.setRGB(i, 255, 0, 0);
@@ -56,7 +65,7 @@ public class Lights extends Command {
         colors[i] = m_ledBuffer.getLED(i).toHexString();
       }
     } else {
-      if ((double)Math.round(System.currentTimeMillis() / 1000) % 2 == 0) {
+      if ((System.currentTimeMillis() / 500) % 2 == 0) {
         for (int i = 0; i < m_ledBuffer.getLength(); i++) {
           m_ledBuffer.setRGB(i, 255, 0, 0);
           colors[i] = m_ledBuffer.getLED(i).toHexString();
