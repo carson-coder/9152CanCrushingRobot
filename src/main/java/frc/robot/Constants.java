@@ -40,4 +40,6 @@ public final class Constants {
     public static final int RIGHT_STICK_X = 4;
     public static final int KEYBOARD_X = 0;
     public static final int KEYBOARD_Y = 1;
+    public static final boolean ONLYMOVE = true;
+    public static final boolean RUN_LIGHTS = false;
 }

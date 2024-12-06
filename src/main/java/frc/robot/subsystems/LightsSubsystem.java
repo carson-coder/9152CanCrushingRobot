@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.commands.crushing.Lights;
 
 public class LightsSubsystem extends SubsystemBase {
@@ -13,8 +14,10 @@ public class LightsSubsystem extends SubsystemBase {
   public LightsSubsystem() {}
   
   public void init() {
-    this.setDefaultCommand(new Lights());
-    SmartDashboard.putData("Crushing Subsystem", this);
+    if (Constants.RUN_LIGHTS) {
+      this.setDefaultCommand(new Lights());
+      SmartDashboard.putData("Crushing Subsystem", this);
+    }
   }
 
   @Override

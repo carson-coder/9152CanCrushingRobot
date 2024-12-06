@@ -56,8 +56,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-        crushingSubsystem = new CanCrushing();
-        crushingSubsystem.init();
+        if (!Constants.ONLYMOVE) {
+            crushingSubsystem = new CanCrushing();
+            crushingSubsystem.init();
+        }
     }
 
     @Override
