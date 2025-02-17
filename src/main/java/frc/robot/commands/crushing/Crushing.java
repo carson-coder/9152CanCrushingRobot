@@ -20,7 +20,7 @@ public class Crushing extends Command {
     public boolean forward;
 
     /** Creates a new Crushing. */
-    public Crushing(boolean forward) {
+    public Crushing(boolean forward=true) {
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(Robot.crushingSubsystem);
         this.motor = RobotContainer.crushingMotor;
