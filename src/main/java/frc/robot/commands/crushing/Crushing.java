@@ -17,15 +17,17 @@ import frc.robot.RobotContainer;
 public class Crushing extends Command {
     CANSparkMax motor;
     public Timer timer;
+    public boolean forward;
 
     /** Creates a new Crushing. */
-    public Crushing() {
+    public Crushing(boolean forward) {
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(Robot.crushingSubsystem);
         this.motor = RobotContainer.crushingMotor;
         timer = new Timer();
         timer.reset();
         timer.start();
+        this.forward = forward;
     }
 
     // Called when the command is initially scheduled.
@@ -38,7 +40,7 @@ public class Crushing extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        motor.set(1/Constants.Robot.SPEED_DIVIDER);
+        motor.set((forward ? 1: -1)/Constants.Robot.SPEED_DIVIDER);
     }
 
     // Called once the command ends or is interrupted.
